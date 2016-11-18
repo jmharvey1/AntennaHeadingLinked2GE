@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Folder>
+    <name>Network Links</name>
+    <visibility>0</visibility>
+    <open>0</open>
+    <description>Network link Feature</description>
+    <NetworkLink>
+      <name>View Centered Placemark</name>
+      <visibility>0</visibility>
+      <open>0</open>
+      <description>Time-based refresh Line using remote server to calculate
+         the line's Heading.</description>
+      <refreshVisibility>0</refreshVisibility>
+      <flyToView>0</flyToView>
+      <Link>
+        <href>http://localhost/viewCenteredPlacemark.py</href>
+	<refreshMode>onInterval</refreshMode>
+        <refreshInterval>1</refreshInterval>
+        <viewRefreshMode>onStop</viewRefreshMode>
+        <viewRefreshTime>1</viewRefreshTime>
+        <viewBoundScale>0.5</viewBoundScale>
+        <viewFormat>BBOX=[bboxWest],[bboxSouth],[bboxEast],[bboxNorth];CAMERA=\
+      [lookatLon],[lookatLat],[lookatRange],[lookatTilt],[lookatHeading];VIEW=\
+      [horizFov],[vertFov],[horizPixels],[vertPixels],[terrainEnabled]</viewFormat>
+      </Link>
+    </NetworkLink>
+  </Folder>
+</kml>
