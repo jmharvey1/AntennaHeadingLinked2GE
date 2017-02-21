@@ -1,0 +1,159 @@
+1. Go to this Github site to get copies of the Google Earth KML file, and the Python Script
+    needed for this project: 
+             https://github.com/jmharvey1/AntennaHeadingLinked2GE
+   Note: a recent version of the python script is also shown close to the the bottom of this file
+
+2. Add the KML file to this equivalent location:
+     \\JIM-WINDOWS8\Users\Jim\AppData\LocalLow\Google\GoogleEarth
+
+3. Go to this Sourceforge location:
+      https://sourceforge.net/projects/wampserver/
+   and download and Install:
+        /WampServer 3/WampServer 3.0.0/Updates/wampserver2.5_x86_update_3.0.3.exe
+   or the latest equivalent.
+
+4. Once installed, Start the WAMP server process (by clicking on the Desktop App ICON)
+
+   Note: There is a Youtube install & setup video found at:
+               https://www.youtube.com/watch?v=bHyiXDJVjY8
+   that shows the general process for installing the WAMP server and Python.
+4a. At 2:13 into the video, Pay attention.
+    What your are doing here is accessing and modifing the default "httpd.conf" file.
+    to support Python file calls.
+    To access it ("httpd.conf"), you left click the WAMP icon in the lower tray
+    HighLight the "Apache" folder,
+    And then select "httpd.conf", in the pick list that appears.
+
+4b. When you're done, the httpd.conf file will have been modified to read as follows: 
+.
+.
+.   
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.4/mod/core.html#options
+    # for more information.
+    #
+    #Options +Indexes +FollowSymLinks +Multiviews
+    AddHandler cgi-script .cgi .py
+    Options Indexes FollowSymLinks ExecCGI
+.
+.
+.
+
+5. As shown in the above video be sure that you also downloaded and installed PYTHON,
+   which can be found at:
+         https://www.python.org/downloads/
+
+6. Place the Python file ("viewCenteredPlacemark.py", downloaded from the github site) at: 
+     C:\wamp64\www
+
+  Note: For reference, this python script/file reads as follows:
+
+#!C:\Program Files\Python35\python
+
+import cgi
+import math
+from datetime import datetime
+import serial
+import time
+
+# the following 3 lines will need to be modified to match your setup/ & location
+center_lng = -85.198159 #Antenna's GPS Longtitude
+center_lat = 35.123637 #Antenna's GPS Latitude
+ser = serial.Serial('COM10', 9600, timeout=0)
+
+url = cgi.FieldStorage()
+heading = 0.0   
+try:
+  ser.write(b'OK2Snd\n')
+  time.sleep(0.05)
+  val1 = ser.readline()
+  if val1:
+      try:
+        heading = float(val1)
+      except ValueError:
+        message = "Either val1 ({!r}) is not a valid number".format(val1)
+        ##print("Error!", message)
+        tkMessageBox.showerror("Invalid Inputs", message)  
+      ##print( heading)
+      ##time.sleep(0.5)
+except ser.SerialTimeoutException:
+  tkMessageBox.showerror("Data could not be read")
+
+
+##bbox = url['BBOX'].value
+##bbox = bbox.split(',')
+##west = float(bbox[0])
+##south = float(bbox[1])
+##east = float(bbox[2])
+##north = float(bbox[3])
+##
+##center_lng = ((east - west) / 2) + west
+##center_lat = ((north - south) / 2) + south
+
+
+R = 6378.1 #Radius of the Earth
+brng = math.radians(heading) #heading is 90 degrees converted to radians.
+d = 40              #Distance in km
+d = math.pi*R*0.99  #Distance in km
+
+
+lat1 = math.radians(center_lat) #Current lat point converted to radians
+lon1 = math.radians(center_lng) #Current long point converted to radians
+
+lat2 = math.asin( math.sin(lat1)*math.cos(d/R) +
+     math.cos(lat1)*math.sin(d/R)*math.cos(brng))
+
+lon2 = lon1 + math.atan2(math.sin(brng)*math.sin(d/R)*math.cos(lat1),
+             math.cos(d/R)-math.sin(lat1)*math.sin(lat2))
+
+lat2 = math.degrees(lat2)
+lon2 = math.degrees(lon2)
+
+
+kml = ( 
+   '<?xml version="1.0" encoding="UTF-8"?>\n'
+   '<kml xmlns="http://www.opengis.net/kml/2.2">\n'
+   '<Document>\n'
+   '<Style id="Mylinestyle">\n'
+   '<LineStyle>\n'
+   '<color>7f0000ff</color>\n'
+   '<width>4</width>\n'
+   '</LineStyle>\n'
+   '</Style>\n'
+   '<Placemark>\n'
+   '<name>Heading: {4:.0f}</name>\n'
+   '<styleUrl>#Mylinestyle</styleUrl>\n'
+   '<LineString>\n'
+   '<extrude>1</extrude>\n'
+   '<tessellate>1</tessellate>\n'
+   '<coordinates>\n'
+   '{0:.14f},{1:.14f},0 {2:.14f},{3:.14f},0\n'
+   '</coordinates>\n'
+   '</LineString>\n'
+   '</Placemark>\n'
+   '</Document>\n'
+   '</kml>'
+   ) .format(center_lng, center_lat, lon2, lat2, heading)
+
+print('Content-Type: application/vnd.google-earth.kml+xml\n')
+print(kml)
+
+##### End of Python Script #################
+
+7. Before running/using the above file, modify these 3 lines: 
+	center_lng = -85.198159 #Antenna's GPS Longtitude
+	center_lat = 35.123637 #Antenna's GPS Latitude
+	ser = serial.Serial('COM10', 9600, timeout=0)
+   to match your setup
+
+8. Note:
+   The "d=" line in the above python file can be modified to set the lenght of the
+   "red heading" line as seen on Google Earth.
+
+9. That's it. If all went well. Plug in your SS Micro interface. 
+   Start WAMPS. 
+   Wait for the ICON to trun green.
+   And then start Google Earth
+9a. The first time you run Google Earth with the new KML file (and shut it down), 
+    it will ask you to "Save the Temporary Places" Entry. 
+    Click "yes" , and that should coplete the install process. 
