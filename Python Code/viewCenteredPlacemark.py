@@ -1,14 +1,16 @@
 #!C:\Program Files\Python35\python
 
-## If running under WAMP64, place this file at:
-## C:\wamp64\www
 import cgi
 import math
 from datetime import datetime
 import serial
 import time
-## Before using this program, change the following comm settings to match your setup
+
+# the following 3 lines will need to be modified to match your setup/ & location
+center_lng = -85.198159 #Antenna's GPS Longtitude
+center_lat = 35.123637 #Antenna's GPS Latitude
 ser = serial.Serial('COM10', 9600, timeout=0)
+
 url = cgi.FieldStorage()
 heading = 0.0   
 try:
@@ -38,14 +40,11 @@ except ser.SerialTimeoutException:
 ##center_lng = ((east - west) / 2) + west
 ##center_lat = ((north - south) / 2) + south
 
-## Before running this file, Enter your Antenna's GPS cooredinates here 
-center_lng = -85.198159
-center_lat = 35.123637
-
 
 R = 6378.1 #Radius of the Earth
 brng = math.radians(heading) #heading is 90 degrees converted to radians.
-d = 40 #Distance in km
+d = 40              #Distance in km
+d = math.pi*R*0.99  #Distance in km
 
 
 lat1 = math.radians(center_lat) #Current lat point converted to radians

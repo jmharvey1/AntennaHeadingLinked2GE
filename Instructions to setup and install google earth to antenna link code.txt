@@ -1,5 +1,5 @@
-1. Go to this Github site to get copies of the Google Earth KML file, and the Python Script
-    needed for this project: 
+1. To get copies of the Google Earth KML file, and the Python Script, needed for this project
+   go to this Github site: 
              https://github.com/jmharvey1/AntennaHeadingLinked2GE
    Note: a recent version of the python script is also shown close to the the bottom of this file
 
@@ -14,13 +14,14 @@
 
 4. Once installed, Start the WAMP server process (by clicking on the Desktop App ICON)
 
-   Note: There is a Youtube install & setup video found at:
+   Note: There is a Youtube "install & setup" video found at:
                https://www.youtube.com/watch?v=bHyiXDJVjY8
-   that shows the general process for installing the WAMP server and Python.
+   It shows the general process for installing the WAMP server and Python.
 4a. At 2:13 into the video, Pay attention.
-    What your are doing here is accessing and modifing the default "httpd.conf" file.
+    What your are doing here is accessing, and modifing, the default "httpd.conf" file,
     to support Python file calls.
-    To access it ("httpd.conf"), you left click the WAMP icon in the lower tray
+    To access it ("httpd.conf"), First launch the WAMP server process, and then
+    left click the WAMP icon in the lower tray
     HighLight the "Apache" folder,
     And then select "httpd.conf", in the pick list that appears.
 
@@ -147,7 +148,7 @@ print(kml)
    to match your setup
 
 8. Note:
-   The "d=" line in the above python file can be modified to set the lenght of the
+   The "d=" line in the above python file can be modified to set the length of the
    "red heading" line as seen on Google Earth.
 
 9. That's it. If all went well. Plug in your SS Micro interface. 
