@@ -31,7 +31,7 @@ Note: The following instructions assume that "Google Earth" has been installed a
     HighLight the "Apache" folder,
     And then select "httpd.conf", in the pick list that appears.
 
-3b. Once you file open, use notepad's "edit>find" menu option, 
+3b. Once you open the file, use notepad's "edit>find" menu option, 
     to locate the line that reads as follows:
        "# The Options directive is both complicated and important."
 3c. Once located, modify the file so that it reads as shown in step 3d.
