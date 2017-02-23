@@ -3,29 +3,32 @@
              https://github.com/jmharvey1/AntennaHeadingLinked2GE
    Note: a recent version of the python script is also shown close to the the bottom of this file
 
-2. Add the KML file to this equivalent location:
-     \\JIM-WINDOWS8\Users\Jim\AppData\LocalLow\Google\GoogleEarth
+2. To Download & Install the WAMPS server App, go to this Sourceforge location:
+           https://sourceforge.net/projects/wampserver/?source=top3_dlp_t5
+     or
+           http://www.wampserver.com/
+   
+     from either of these two locations you should be able to download the following file
+          "wampserver3.0.6_x64_apache2.4.23_mysql5.7.14_php5.6.25-7.0.10.exe"      
+     or the latest equivalent.
+2a. Launch the execuexecutable/installer ("wampserver3.0.6_x64....  .exe") and follow the instructions
 
-3. Go to this Sourceforge location:
-      https://sourceforge.net/projects/wampserver/
-   and download and Install:
-        /WampServer 3/WampServer 3.0.0/Updates/wampserver2.5_x86_update_3.0.3.exe
-   or the latest equivalent.
 
-4. Once installed, Start the WAMP server process (by clicking on the Desktop App ICON)
-
-   Note: There is a Youtube "install & setup" video found at:
+   Note: There is a Python/WAMP Server "install & setup" video found at:
                https://www.youtube.com/watch?v=bHyiXDJVjY8
-   It shows the general process for installing the WAMP server and Python.
-4a. At 2:13 into the video, Pay attention.
+   It shows the general process for installing the WAMP server and Python Applications.
+
+3. Once installed, Start the WAMP server process (by clicking on the Desktop App ICON)
+   
+3a. At 2:13 into the video, Pay attention.
     What your are doing here is accessing, and modifing, the default "httpd.conf" file,
     to support Python file calls.
-    To access it ("httpd.conf"), First launch the WAMP server process, and then
+    To access it ("httpd.conf"), after launching the WAMP server process,
     left click the WAMP icon in the lower tray
     HighLight the "Apache" folder,
     And then select "httpd.conf", in the pick list that appears.
 
-4b. When you're done, the httpd.conf file will have been modified to read as follows: 
+3b. When you're done, the httpd.conf file will have been modified to read as follows: 
 .
 .
 .   
@@ -40,14 +43,60 @@
 .
 .
 
-5. As shown in the above video be sure that you also downloaded and installed PYTHON,
+4. Be sure that you also downloaded and installed PYTHON,
    which can be found at:
          https://www.python.org/downloads/
 
-6. Place the Python file ("viewCenteredPlacemark.py", downloaded from the github site) at: 
+5. Before you can run then Python Code used in this project, You will need to add the serial
+   library for python. It can be found at:
+               https://github.com/pyserial/pyserial
+
+5a. To integrate the serial library into python, 
+       unzip the downloaded file "pyserial-master.zip" to known location.
+       Start python (IDLE)
+       Using its "file > Open" menu option, navigate to, and open the "setup.py" file,
+          contained in the extracted/unzipped file set.
+       Then using the "F5" run module option, run "setup".
+         Note: It should generate an output similar to this:
+          >>> 
+          ========== RESTART: C:\Users\Jim\Documents\Pyserial-master\setup.py ==========
+          >>>
+5b. Now confirm that the serial library was installed correctly.
+       To do this, use the same "file > Open" menu option, 
+       but this time navigate to \test\run_all_tests.py,
+       found in the same extracted collection of files, 
+       and run it. (Again using the "F5" option.)
+         Note: if successful, it should generate an output that looks like this:
+
+         Patching sys.path to test local version. Testing Version: 3.2.1
+	 found 15 tests in 'test'
+ 	 found 10 tests in 'test_advanced'
+	 found 0 tests in 'test_asyncio'
+	 found 2 tests in 'test_cancel'
+	 found 2 tests in 'test_high_load'
+	 found 1 tests in 'test_iolib'
+	 found 1 tests in 'test_pty'
+	 found 5 tests in 'test_readline'
+	 found 1 tests in 'test_rfc2217'
+	 found 2 tests in 'test_rs485'
+	 found 4 tests in 'test_settings_dict'
+	 found 2 tests in 'test_threaded'
+	 found 4 tests in 'test_timeout_class'
+	 found 3 tests in 'test_url'
+	 found 2 tests in 'test_util'
+	 ..............................s......s................
+	 ----------------------------------------------------------------------
+	 Ran 54 tests in 29.674s
+
+	 OK (skipped=2)
+	 >>> 
+	 ========== RESTART: C:\Users\Jim\Documents\Pyserial-master\setup.py ==========
+	 >>>       
+
+6. Move/Copy the Python file ("viewCenteredPlacemark.py", downloaded from the github site, Step1) to: 
      C:\wamp64\www
 
-  Note: For reference, this python script/file reads as follows:
+   Note: For reference, this python script/file reads as follows:
 
 #!C:\Program Files\Python35\python
 
@@ -142,19 +191,28 @@ print(kml)
 ##### End of Python Script #################
 
 7. Before running/using the above file, modify these 3 lines: 
-	center_lng = -85.198159 #Antenna's GPS Longtitude
-	center_lat = 35.123637 #Antenna's GPS Latitude
+	center_lng = -85.198159 #Your Antenna's GPS Longtitude
+	center_lat = 35.123637 #Your Antenna's GPS Latitude
 	ser = serial.Serial('COM10', 9600, timeout=0)
-   to match your setup
+   to match your setup.
 
 8. Note:
-   The "d=" line in the above python file can be modified to set the length of the
-   "red heading" line as seen on Google Earth.
+   The "d=..." line in the above python file can be modified to set the length of the
+   "red heading" line as seen on Google Earth. Change this line to meet your needs.
 
-9. That's it. If all went well. Plug in your SS Micro interface. 
+9. Now place the kml file "networklinkTest02.kml" in any convient location. For example:
+    "My Documents/GoogleEarthKMLfile"
+
+
+10. That's it. If all went well. Plug in your SS Micro interface. 
    Start WAMPS. 
    Wait for the ICON to trun green.
    And then start Google Earth
-9a. The first time you run Google Earth with the new KML file (and shut it down), 
+
+10a. Using the "file > Open" menu option (in Google Earth), navigate to "networklinkTest02.kml",
+    and select and open it via this dialog box
+
+
+10b. The first time you run Google Earth with the new KML file (and shut Google Earth down), 
     it will ask you to "Save the Temporary Places" Entry. 
     Click "yes" , and that should coplete the install process. 
