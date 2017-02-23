@@ -1,3 +1,7 @@
+Note: The following instructions assume that "Google Earth" has been installed and is working
+      on your computer. If not, download it here:
+       https://earth.google.com/download-earth.html
+
 1. To get copies of the Google Earth KML file, and the Python Script, needed for this project
    go to this Github site: 
              https://github.com/jmharvey1/AntennaHeadingLinked2GE
@@ -8,11 +12,10 @@
      or
            http://www.wampserver.com/
    
-     from either of these two locations you should be able to download the following file
+     from either of these two locations, you should be able to download the following file
           "wampserver3.0.6_x64_apache2.4.23_mysql5.7.14_php5.6.25-7.0.10.exe"      
      or the latest equivalent.
 2a. Launch the execuexecutable/installer ("wampserver3.0.6_x64....  .exe") and follow the instructions
-
 
    Note: There is a Python/WAMP Server "install & setup" video found at:
                https://www.youtube.com/watch?v=bHyiXDJVjY8
@@ -20,15 +23,20 @@
 
 3. Once installed, Start the WAMP server process (by clicking on the Desktop App ICON)
    
-3a. At 2:13 into the video, Pay attention.
-    What your are doing here is accessing, and modifing, the default "httpd.conf" file,
+3a. As shown at 2:13 in the video mentioned above,
+    What your are doing is modifing, the default "httpd.conf" file,
     to support Python file calls.
     To access it ("httpd.conf"), after launching the WAMP server process,
-    left click the WAMP icon in the lower tray
+    left click the WAMP icon, in the lower tray.
     HighLight the "Apache" folder,
     And then select "httpd.conf", in the pick list that appears.
 
-3b. When you're done, the httpd.conf file will have been modified to read as follows: 
+3b. Once you file open, use notepad's "edit>find" menu option, 
+    to locate the line that reads as follows:
+       "# The Options directive is both complicated and important."
+3c. Once located, modify the file so that it reads as shown in step 3d.
+
+3d. When you're done, the httpd.conf file will have been modified to read as follows: 
 .
 .
 .   
@@ -42,6 +50,8 @@
 .
 .
 .
+
+3e. When you are satified that your copy of "httpd.conf" matches step 3d. save and close the file.
 
 4. Be sure that you also downloaded and installed PYTHON,
    which can be found at:
