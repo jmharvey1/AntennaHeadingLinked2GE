@@ -63,45 +63,42 @@ Note: The following instructions assume that "Google Earth" has been installed a
 
 5a. To integrate the serial library into python, 
        unzip the downloaded file "pyserial-master.zip" to known location.
-       Start python (IDLE)
-       Using its "file > Open" menu option, navigate to, and open the "setup.py" file,
-          contained in the extracted/unzipped file set.
-       Then using the "F5" run module option, run "setup".
-         Note: It should generate an output similar to this:
-          >>> 
-          ========== RESTART: C:\Users\Jim\Documents\Pyserial-master\setup.py ==========
-          >>>
-5b. Now confirm that the serial library was installed correctly.
-       To do this, use the same "file > Open" menu option, 
-       but this time navigate to \test\run_all_tests.py,
-       found in the same extracted collection of files, 
-       and run it. (Again using the "F5" option.)
-         Note: if successful, it should generate an output that looks like this:
 
-         Patching sys.path to test local version. Testing Version: 3.2.1
-	 found 15 tests in 'test'
- 	 found 10 tests in 'test_advanced'
-	 found 0 tests in 'test_asyncio'
-	 found 2 tests in 'test_cancel'
-	 found 2 tests in 'test_high_load'
-	 found 1 tests in 'test_iolib'
-	 found 1 tests in 'test_pty'
-	 found 5 tests in 'test_readline'
-	 found 1 tests in 'test_rfc2217'
-	 found 2 tests in 'test_rs485'
-	 found 4 tests in 'test_settings_dict'
-	 found 2 tests in 'test_threaded'
-	 found 4 tests in 'test_timeout_class'
-	 found 3 tests in 'test_url'
-	 found 2 tests in 'test_util'
-	 ..............................s......s................
-	 ----------------------------------------------------------------------
-	 Ran 54 tests in 29.674s
+5a1. Next, your Windows10 system path variable needs to be modified to include the path to Python.
+     One way to find the path is, go to your start menu and and scroll down to the python folder (group)
+     expand this group &
+     highlight "Idle (Python3.x..)" entry.
+     Right Click and use the "more > Open File location" option.
+     When that folder opens, hightlight & right-click the "IDLE (Python 3.5 64-bit)" shortcut
+     open the shortcut's properties window and record the "start in" location
+      (on my computer, it is: "C:\Program Files\Python35\")
 
-	 OK (skipped=2)
-	 >>> 
-	 ========== RESTART: C:\Users\Jim\Documents\Pyserial-master\setup.py ==========
-	 >>>       
+5a2. Search for "Edit the System environment Variables" on the taskbar.    
+     open the control panel match.
+     under the "advanced" tab of the "system porperties" window, click the "environment variables" button.
+     In the "System variables" section of the "enveironment variables" window, highlight the "path" entry,
+     and then click the "edit" button.
+     Create a "new" line entry that matches the path to python, that you recorded in step 5a1.
+     (In my case, the line entry reads: C:\Program Files\Python35 ) 
+
+5a3. To test that the above steps worked okay is, 
+     start a new Command Prompt (DOS Prompt) 
+     and enter the command “python”. 
+     You should see something like this:
+ 	Python 3.5.2 (v3.5.2:4def2.....)[MSC v.1900 64 bit (AMD64)] on win32
+	type "help", "copyright", "credits" or "license" for more information.
+	>>>>
+5a4. Type exit() to close python and to return back to the command prompt.
+
+5a5. Now, while still in the Dos command prompt window, navigate to your extracted "pyserial-master" folder.
+
+5a6. Once there, enter the command: "python setup.py install" (do not include the quotes)
+     this should generate quite a long respone, that ends with statements looking something like 
+     the following:
+          Installed c:\program files\python35\lib\site-packages\pyserial-3.2.1-py3.5.egg
+          Processing dependencies for pyserial==3.2.1
+          Finished procesing dependenciesnfor pyserial==3.2.1
+  
 
 6. Move/Copy the Python file ("viewCenteredPlacemark.py", downloaded from the github site, Step1) to: 
      C:\wamp64\www
@@ -206,6 +203,12 @@ print(kml)
 	ser = serial.Serial('COM10', 9600, timeout=0)
    to match your setup.
 
+7a. Also the first line, in the viewCenteredPlacemark.py file, which currently reads as follows:
+      #!C:\Program Files\Python35\python
+    It needs to be changed match your “path” to python
+    So if your path to python is different, adjust this line to read:
+    #!........yourpath.......\python
+
 8. Note:
    The "d=..." line in the above python file can be modified to set the length of the
    "red heading" line as seen on Google Earth. Change this line to meet your needs.
@@ -216,7 +219,7 @@ print(kml)
 
 10. That's it. If all went well. Plug in your SS Micro interface. 
    Start WAMPS. 
-   Wait for the ICON to trun green.
+   Wait for the ICON to trun green. (If it doesn't turn "green", see step 11 for possible fix)
    And then start Google Earth
 
 10a. Using the "file > Open" menu option (in Google Earth), navigate to "networklinkTest02.kml",
@@ -226,3 +229,9 @@ print(kml)
 10b. The first time you run Google Earth with the new KML file (and shut Google Earth down), 
     it will ask you to "Save the Temporary Places" Entry. 
     Click "yes" , and that should coplete the install process. 
+-----------------------------------------------------------------------------------------------------
+
+11   Fix for Wamp services not starting (Icon won't turn green)
+11a. Search for "Turn Windows features on or off" on the taskbar.
+11b. Under "Internet Information Services" deselect "World Wide Web Services" .
+11c. Reboot and WAMP should now go "green".
