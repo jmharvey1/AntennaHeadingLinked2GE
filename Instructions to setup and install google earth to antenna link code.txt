@@ -73,13 +73,13 @@ Note: The following instructions assume that "Google Earth" has been installed a
      open the shortcut's properties window and record the "start in" location
       (on my computer, it is: "C:\Program Files\Python35\")
 
-5a2. Search for "Edit the System environment Variables" on the taskbar.    
-     open the control panel match.
+5a2. In the Windows 10 "Task Bar", search for "Edit the System environment Variables".    
+     open the "control panel" match.
      under the "advanced" tab of the "system porperties" window, click the "environment variables" button.
      In the "System variables" section of the "enveironment variables" window, highlight the "path" entry,
      and then click the "edit" button.
      Create a "new" line entry that matches the path to python, that you recorded in step 5a1.
-     (In my case, the line entry reads: C:\Program Files\Python35 ) 
+     (In my case, the new line entry reads: C:\Program Files\Python35 ) 
 
 5a3. To test that the above steps worked okay, 
      start a new Command Prompt (DOS Prompt) 
@@ -88,7 +88,7 @@ Note: The following instructions assume that "Google Earth" has been installed a
  	Python 3.5.2 (v3.5.2:4def2.....)[MSC v.1900 64 bit (AMD64)] on win32
 	type "help", "copyright", "credits" or "license" for more information.
 	>>>>
-5a4. To close Python, and to return back to the command prompt, type exit() .
+5a4. To close Python, and to return back to the command prompt, type: exit() , and hit the "enter" key.
 
 5a5. Now, while still in the Dos command prompt window, navigate to your extracted "pyserial-master" folder.
 
@@ -209,26 +209,27 @@ print(kml)
     So if your path to python is different, adjust this line to read:
     #!........yourpath.......\python
 
-8. Note:
+8. And finally, Note:
    The "d=..." line in the above python file can be modified to set the length of the
    "red heading" line as seen on Google Earth. Change this line to meet your needs.
 
 9. Now place the kml file "networklinkTest02.kml" in any convient location. For example:
-    "My Documents/GoogleEarthKMLfile"
+           "My Documents/GoogleEarthKMLfile"
 
 
 10. That's it. If all went well. Plug in your SS Micro interface. 
-   Start WAMPS. 
-   Wait for the ICON to trun green. (If it doesn't turn "green", see step 11 for possible fix)
-   And then start Google Earth
+    Start WAMPS. 
+    Wait for the ICON to trun green. (If it doesn't turn "green", see step 11 for possible fix)
+    And then, start Google Earth
 
 10a. Using the "file > Open" menu option (in Google Earth), navigate to "networklinkTest02.kml",
-    and select and open it via this dialog box
+     and select and open it via this dialog box
 
 
 10b. The first time you run Google Earth with the new KML file (and shut Google Earth down), 
-    it will ask you to "Save the Temporary Places" Entry. 
-    Click "yes" , and that should coplete the install process. 
+     it will ask you to "Save the Temporary Places" Entry. 
+     Click "yes". 
+     That should coplete the install process. 
 -----------------------------------------------------------------------------------------------------
 
 11   Fix for Wamp services not starting (Icon won't turn green)
