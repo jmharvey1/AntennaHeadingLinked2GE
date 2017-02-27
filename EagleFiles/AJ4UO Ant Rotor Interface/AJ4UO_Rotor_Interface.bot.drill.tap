@@ -1,0 +1,89 @@
+(.../pcb-gcode-3.6.0.4/pcb-gcode.ulp)
+(Copyright 2005 - 2012 by John Johnson)
+(See readme.txt for licensing terms.)
+(This file generated from the board:)
+(.../AJ4UO Ant Rotor Interface/AJ4UO_Rotor_Interface.brd)
+(Current profile is .../pcb-gcode-3.6.0.4/profiles/mach.pp  )
+(This file generated 2/18/2017 4:29 PM)
+(Settings from pcb-machine.h)
+(  Tool Size)
+(0.1000  )
+(Z Axis Settings)
+(  High     Up        Down     Drill)
+(12.7000 	2.5400  	-0.1778 	-1.5300 )
+(spindle on time = 3.0000)
+(milling depth = -0.2540)
+(text depth = -0.1270)
+(tool change at 12.7000 15.2400 25.4000 )
+(feed rate xy = F75    )
+(feed rate z  = F100   )
+(Settings from pcb-defaults.h)
+(isolate min = 0.1000)
+(isolate max = 0.5080)
+(isolate step = 0.0800)
+(Generated bottom outlines, bottom drill, )
+(Unit of measure: mm)
+( Tool|       Size       |  Min Sub |  Max Sub |   Count )
+( T01 | 0.813mm 0.0320in | 0.0000in | 0.0000in |       0 )
+( T02 | 1.016mm 0.0400in | 0.0000in | 0.0000in |       0 )
+( T03 | 2.007mm 0.0790in | 0.0000in | 0.0000in |       0 )
+(Metric Mode)
+G21
+(Absolute Coordinates)
+G90
+M05
+G00 Z25.4000 
+G00 X12.7000 Y15.2400 
+M06 T01  ; 0.8128  
+G01 Z0.0000  F100   
+M06 T01  ; 0.8128  
+G00 Z2.5400  
+M03
+G04 P3.000000
+G82 X-7.6200 Y3.8100  Z-1.5300 F100   R2.5400  P1.000000
+G82 X-7.6200 Y13.9700 
+G82 X-11.4300 Y8.8900  
+G82 X-13.9700 Y6.3500  
+G82 X-13.9700 Y11.4300 
+G82 X-17.7800 Y3.8100  
+G82 X-17.7800 Y13.9700 
+M05
+G00 Z25.4000 
+M06 T02  ; 1.0160  
+G01 Z0.0000  F100   
+M06 T02  ; 1.0160  
+G00 Z2.5400  
+M03
+G04 P3.000000
+G82 X-3.8100 Y1.2700  Z-1.5300 F100   R2.5400  P1.000000
+G82 X-3.8100 Y16.5100 
+G82 X-6.3500 Y1.2700  
+G82 X-6.3500 Y16.5100 
+G82 X-8.8900 Y1.2700  
+G82 X-8.8900 Y16.5100 
+G82 X-11.4300 Y1.2700  
+G82 X-11.4300 Y16.5100 
+G82 X-1.2700 Y5.0800  
+G82 X-1.2700 Y7.6200  
+G82 X-1.2700 Y10.1600 
+G82 X-1.2700 Y12.7000 
+G82 X-1.2700 Y15.2400 
+G82 X-1.2700 Y2.5400  
+G82 X-13.9700 Y1.2700  
+G82 X-13.9700 Y16.5100 
+G82 X-16.5100 Y1.2700  
+G82 X-16.5100 Y16.5100 
+M05
+G00 Z25.4000 
+M06 T03  ; 2.0066  
+G01 Z0.0000  F100   
+M06 T03  ; 2.0066  
+G00 Z2.5400  
+M03
+G04 P3.000000
+G82 X-6.3500 Y6.3500  Z-1.5300 F100   R2.5400  P1.000000
+G82 X-6.3500 Y10.7950 
+T01 
+G00 Z12.7000 
+M05
+M02
